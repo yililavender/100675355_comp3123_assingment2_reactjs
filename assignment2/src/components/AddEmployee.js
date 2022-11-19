@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AddEmployee = () => {
   const [firstName, setFirstName] = useState("");
@@ -12,7 +13,7 @@ const AddEmployee = () => {
   const saveEmployee = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/employees", {
+      await axios.post("http://localhost:3000/employees", {
         firstName,
         lastName,
         email
@@ -69,10 +70,13 @@ const AddEmployee = () => {
           <div className="field">
             <div className="control">
               <button type="submit" className="button is-success">
+                <Link to="/" className="button is-success">
                 Save
+                </Link>
               </button>
             </div>
           </div>
+          
         </form>
       </div>
     </div>

@@ -12,19 +12,19 @@ const EditEmployee = () => {
 
   useEffect(() => {
     getEmployeeById();
-  }, []);
+  });
 
   const getEmployeeById = async () => {
-    const response = await axios.get(`http://localhost:5000/employees/${id}`);
-    setFirstName(response.data.name)
-    setLastName(response.data.name)
+    const response = await axios.get(`http://localhost:3000/employees/${id}`);
+    setFirstName(response.data.firstName)
+    setLastName(response.data.lastName)
     setEmail(response.data.email)
   };
 
   const updateEmployee = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/employees/${id}`, {
+      await axios.patch(`http://localhost:3000/employees/${id}`, {
         firstName,
         lastName,
         email

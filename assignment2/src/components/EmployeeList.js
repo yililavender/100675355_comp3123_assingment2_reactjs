@@ -10,13 +10,13 @@ const EmployeeList = () => {
   }, []);
 
   const getEmployees = async () => {
-    const response = await axios.get("http://localhost:5000/employees");
+    const response = await axios.get("http://localhost:3000/employees");
     setEmployee(response.data);
   };
 
   const deleteEmployee = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/employees/${id}`);
+      await axios.delete(`http://localhost:3000/employees/${id}`);
       getEmployees();
     } catch (error) {
       console.log(error);
@@ -40,20 +40,27 @@ const EmployeeList = () => {
           </thead>
           <tbody>
             {employees.map((employee, index) => (
-              <tr key={employee._id}>
+              <tr key={employee.id}>
                 <td>{index + 1}</td>
                 <td>{employee.firstName}</td>
                 <td>{employee.lastName}</td>
                 <td>{employee.email}</td>
                 <td>
                   <Link
-                    to={`edit/${employee._id}`}
+                    to={`edit/${employee.id}`}
                     className="button is-info is-small mr-1"
                   >
                     Edit
                   </Link>
+                  <Link
+                    to={`view/${employee.id}`}
+                    className="button is-info is-small mr-1"
+                  >
+                    View
+                  </Link>
                   <button
-                    onClick={() => deleteEmployee(employee._id)}
+                    to={`delete/${employee.id}`}
+                    onClick={() => deleteEmployee(employee.id)}
                     className="button is-danger is-small"
                   >
                     Delete
