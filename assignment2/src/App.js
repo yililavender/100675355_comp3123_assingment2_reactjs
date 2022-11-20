@@ -5,7 +5,7 @@ import EditEmployee from "./components/EditEmployee";
 import ViewEmployee from "./components/ViewEmployee";
 import DeleteEmployee from "./components/DeleteEmployee";
 import Login from "./components/Login";
-import Register from "./components/register";
+import Register from "./components/Register";
 
 function App() {
   return (

@@ -1,61 +1,74 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react';
+import axios from 'axios';
+import { Link } from "react-router-dom";
 import { Form, Button, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Login = (props) => {
-      
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    
-    var email = ""
-    var password  = ""
+export default class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    };
+  }
+
+   //On Textbox value change event to read values for login
    
-    const myStyle = {
+  handleChange = e => this.setState({ [e.target.name]: e.target.value })
+
+ login = () => {
+
+    let user = { email: this.state.email,
+                password: this.state.password }
+
+    axios.post('http://localhost:3000/login', {user})
+      .then( res =>  {
+        localStorage.setItem('user_id', res.data.id);
+        this.props.history.push('/')
+      }
+
+    ).catch(err => 
+    err.response.data.errorMessage
+    )
+   }
+
+  render() {
+      const myStyle = {
           margin: 'auto',
           width: '50%',
           border: '3px solid green',
           padding: '10px'
     }
-    
-    useEffect(() => {
-      document.title = `${email}Labe 10 Exec Solution`
-    })
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      
-      email = emailRef.current.value
-      password  = passwordRef.current.value
-           
-    }
-  
     return (
-        <center>
-        <Form style={myStyle} onSubmit={handleSubmit}>
-            <h1>Log In</h1>
-  <Form.Row>
-    <Form.Group as={Col} controlId="formGridEmail">
-      <Form.Label>Email</Form.Label>
-      <Form.Control type="email" ref={emailRef} placeholder="Enter email" />
-    </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridPassword">
-      <Form.Label>password</Form.Label>
-      <Form.Control name= "password" type="text" ref={passwordRef} placeholder="Password" />
-    </Form.Group>
-  </Form.Row>
+      <center>
+        <Form style={myStyle} onSubmit={this.login}>
+            <h1>Login</h1>
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" name="email" onChange={this.handleChange} placeholder="Email" />          
+        </Form.Group>
 
-  <Button variant="success" type="submit">
-    Submit
-  </Button>
-</Form>
-<div>
-  <h1>Input Details</h1>
-    <p>{email}</p>
-    <p>{password}</p>
-</div>
-        </center>
-      );
+        <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control name= "password" type="password" onChange={this.handleChange} placeholder="Password" />
+          </Form.Group>
+        </Form.Row>
+
+        <Button 
+          variant="success" type="submit"
+          disabled={this.state.email == '' && this.state.password == ''}
+          onClick={this.login}>
+          Login
+        </Button>
+        <Link href="/register">
+          Register
+        </Link>
+        </Form>
+
+      </center>
+     )
+    }
 }
-  
-export default Login
