@@ -22,7 +22,7 @@ export default class Login extends React.Component {
     let user = { email: this.state.email,
                 password: this.state.password }
 
-    axios.post('http://localhost:3000/login', {user})
+    axios.post('http://localhost:8081/login', {user})
       .then( res =>  {
         localStorage.setItem('user_id', res.data.id);
         this.props.history.push('/')

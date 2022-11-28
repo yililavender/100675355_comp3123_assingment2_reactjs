@@ -29,14 +29,19 @@ app.post('/signup', async (req, res) => {
 //http://localhost:8081/api/user/login
 app.post('/login', async (req, res) => {
     try {
-      const find_user = await userModel.findOne({username: req.body.username} || 
-      {email: req.body.email} || {password: req.body.password})
+      const find_user = await userModel.findOne({username: req.body.username})
+      
       if (!find_user ){
-        res.status(404).send("No User found")
+        return  res.status(404).json({status:"false",message: "Invalid username or password"})
       }
+
+      if (req.body.password!=users.password) {
+            return  res.status(400).json({status:"false",message: "Invalid username or password"})
+      }
+  
       res.status(204).json({
             "status": true,
-            "email": find_user.email, 
+            "email": find_user.username, 
             "message": "User logged in successfully",
             "jwt_token": "Optional implementation"
           })

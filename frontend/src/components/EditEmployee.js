@@ -15,7 +15,7 @@ const EditEmployee = () => {
   });
 
   const getEmployeeById = async () => {
-    const response = await axios.get(`http://localhost:3000/employees/${id}`);
+    const response = await axios.get(`http://localhost:8081/employees/${id}`);
     setFirstName(response.data.firstName)
     setLastName(response.data.lastName)
     setEmail(response.data.email)
@@ -24,7 +24,7 @@ const EditEmployee = () => {
   const updateEmployee = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:3000/employees/${id}`, {
+      await axios.patch(`http://localhost:8081/employees/${id}`, {
         firstName,
         lastName,
         email
