@@ -21,12 +21,12 @@ export default class Register extends React.Component {
                 password: this.state.password }
 
     axios.post('http://localhost:8081/api/user/register', {user})
-      .then( res =>  {console.log(res.data.user)
+      .then( res =>  {console.log(res)
         this.props.history.push('/')
       }
 
     ).catch(err => 
-    err.response.data.errorMessage
+      console.error(err)
     )
    }
 
@@ -56,7 +56,7 @@ export default class Register extends React.Component {
 
         <Button 
           variant="success" type="submit"
-          disabled={this.state.email == '' && this.state.password == ''}
+          disabled={this.state.email === '' && this.state.password === ''}
           onClick={this.register}>
           Register
         </Button>

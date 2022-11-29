@@ -12,12 +12,10 @@ export default class Login extends React.Component {
       password: ''
     };
   }
-
-
    
   handleChange = e => this.setState({ [e.target.name]: e.target.value })
 
- login = () => {
+  login = () => {
 
     let user = { email: this.state.email,
                 password: this.state.password }
@@ -29,7 +27,7 @@ export default class Login extends React.Component {
       }
 
     ).catch(err => 
-    err.response.data.errorMessage
+      console.error(err)
     )
    }
 
