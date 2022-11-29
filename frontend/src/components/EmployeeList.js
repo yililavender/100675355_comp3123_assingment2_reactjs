@@ -10,13 +10,13 @@ const EmployeeList = () => {
   }, []);
 
   const getEmployees = async () => { 
-    const response = await axios.get(`http:/localhost:8081${employees}`)
+    const response = await axios.get(`http:/localhost:8081/api/emp/${employees}`)
     setEmployee(response.data);
   };
 
   const deleteEmployee = async (id) => {
     try {
-      await axios.delete(`http:/localhost:8081/`, {id : id});
+      await axios.delete(`http:/localhost:8081/api/emp/`, {id : id});
       getEmployees();
     } catch (error) {
       console.log(error);

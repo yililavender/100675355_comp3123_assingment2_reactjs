@@ -13,7 +13,7 @@ const AddEmployee = () => {
   const saveEmployee = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8081/employees", {
+      await axios.post("http://localhost:8081//api/emp/employees", {
         firstName,
         lastName,
         email
