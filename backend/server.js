@@ -21,4 +21,4 @@ app.use("/api/emp/employees", employeeRouter);
 
 app.use("/api/user", userRouter);
 
-app.listen(process.env.PORT || 8081, () => { console.log('Server is running...') });
+app.listen(process.env.PORT || 8082, () => { console.log('Server is running...') });

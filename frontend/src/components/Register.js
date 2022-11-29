@@ -12,8 +12,6 @@ export default class Register extends React.Component {
       password: ''
     };
   }
-
-   //On Textbox value change event to read values for register
    
   handleChange = e => this.setState({ [e.target.name]: e.target.value })
 
@@ -22,9 +20,8 @@ export default class Register extends React.Component {
     let user = { email: this.state.email,
                 password: this.state.password }
 
-    axios.post('http://localhost:8081/register', {user})
-      .then( res =>  {
-        localStorage.setItem('user', res.data.user)
+    axios.post('http://localhost:8081/api/user/register', {user})
+      .then( res =>  {console.log(res.data.user)
         this.props.history.push('/')
       }
 

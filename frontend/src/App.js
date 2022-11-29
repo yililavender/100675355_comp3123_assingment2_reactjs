@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route} from "react-router-dom";
-import EmployeeList from "./components/EmployeeList";
-import AddEmployee from "./components/AddEmployee";
-import EditEmployee from "./components/EditEmployee";
-import ViewEmployee from "./components/ViewEmployee";
-import DeleteEmployee from "./components/DeleteEmployee";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import { BrowserRouter, Routes, Route} from "react-router-dom"
+import EmployeeList from "./components/EmployeeList"
+import AddEmployee from "./components/AddEmployee"
+import EditEmployee from "./components/EditEmployee"
+import ViewEmployee from "./components/ViewEmployee"
+import DeleteEmployee from "./components/DeleteEmployee"
+import Login from "./components/Login"
+import Register from "./components/Register"
 
 function App() {
   return (

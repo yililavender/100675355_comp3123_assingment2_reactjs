@@ -35,7 +35,7 @@ app.post('/login', async (req, res) => {
         return  res.status(404).json({status:"false",message: "Invalid username or password"})
       }
 
-      if (req.body.password!=users.password) {
+      if (req.body.password!=find_user.password) {
             return  res.status(400).json({status:"false",message: "Invalid username or password"})
       }
   

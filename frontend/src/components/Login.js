@@ -13,7 +13,7 @@ export default class Login extends React.Component {
     };
   }
 
-   //On Textbox value change event to read values for login
+
    
   handleChange = e => this.setState({ [e.target.name]: e.target.value })
 
@@ -22,9 +22,9 @@ export default class Login extends React.Component {
     let user = { email: this.state.email,
                 password: this.state.password }
 
-    axios.post('http://localhost:8081/login', {user})
+    axios.post('http://localhost:8081/api/user/login', {user})
       .then( res =>  {
-        localStorage.setItem('user_id', res.data.id);
+        console.log(res.data.user)
         this.props.history.push('/')
       }
 
@@ -39,7 +39,7 @@ export default class Login extends React.Component {
           width: '50%',
           border: '3px solid green',
           padding: '10px'
-    }
+      }
     return (
 
       <center>
